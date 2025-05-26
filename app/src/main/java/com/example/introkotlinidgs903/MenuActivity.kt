@@ -10,6 +10,7 @@ import android.content.Intent
 import com.example.introkotlinidgs903.Practica1.saludoActivity
 import com.example.introkotlinidgs903.Practica2.OperasActivity
 import com.example.introkotlinidgs903.Cinepolis.CinepolisActivity
+import com.example.introkotlinidgs903.Practica4.ArchivosActivity
 
 
 class MenuActivity : AppCompatActivity() {
@@ -27,12 +28,27 @@ class MenuActivity : AppCompatActivity() {
         val btnCinePolis = findViewById<Button>(R.id.btncinepolis)
         btnCinePolis.setOnClickListener {navegateToCine()}
 
+        val btnArchivos = findViewById<Button>(R.id.btnArchivos)
+        btnArchivos.setOnClickListener {navegateToArchivos()}
+
+        val btnAleatorio = findViewById<Button>(R.id.btnaleatorio)
+        btnAleatorio.setOnClickListener {navegateToAleatorio()}
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
     }
+
+    private fun navegateToAleatorio() {
+        val intent = Intent(this, ejemplo3Activity::class.java)
+        startActivity(intent)    }
+
+    private fun navegateToArchivos() {
+        val intent = Intent(this, ArchivosActivity::class.java)
+        startActivity(intent)    }
+
 
     private fun navegateToCine() {
         val intent = Intent(this, CinepolisActivity::class.java)

@@ -2,35 +2,23 @@ package com.example.introkotlinidgs903.Practica1
 
 import android.os.Bundle
 import android.view.View
+import android.widget.EditText
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.introkotlinidgs903.R
-import android.content.Intent
-import android.widget.EditText
-import android.widget.Button
 
+class resultado : AppCompatActivity() {
 
-
-class saludoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_saludo)
+        setContentView(R.layout.activity_resultado)
 
-
-        val btnSaludo = findViewById<Button>(R.id.btnSaludo)
-        val edtName = findViewById<EditText>(R.id.edtName)
-        btnSaludo.setOnClickListener {
-            val name = edtName.text.toString()
-            if (name.isNotEmpty()) {
-                val intent = Intent(this, resultado::class.java)
-                intent.putExtra("name", name)
-                startActivity(intent)
-            }
-        }
-
+        val name = intent.extras?.getString("name").orEmpty()
+        val tvResult = findViewById<EditText>(R.id.tvResultado)
+        tvResult.setText("Hola $name")
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v: View, insets: WindowInsetsCompat ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
